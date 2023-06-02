@@ -54,7 +54,7 @@ jobs:
           
               if (!$(Test-Path $pkg_name))
               {
-                ndext pack o $pkg_dir
+                ndext pack -o $pkg_dir
               }
               else
               {
