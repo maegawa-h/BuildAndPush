@@ -1,0 +1,49 @@
+{
+	"$schema": "manifest.schema.json",
+
+	"name": "sampleExtension", // TODO ここはすべてのエクステンションでユニークになるようにして下さい。
+	"main": "sampleExtension.dll", // TODO ここはプロジェクトのアセンブリファイル名と同じにしてください。
+	
+	"lifecycle": "application",
+
+	"extensionPoints": {
+
+		"commands": [
+			{
+				"id": "sampleExtension.HelloCommand",
+				"execFunc": "SayHello"
+			}
+		],
+
+		"events": {
+		},
+
+		"ribbon": {
+			"tabs": [
+				{
+					"id": "sampleExtension.HelloTab",
+					"label": "Hello",
+
+					"groups": [
+						{
+							"id": "sampleExtension.Group1",
+							"label": "Group1",
+
+							"controls": [
+								{
+									"id": "sampleExtension.HelloButton",
+									"type": "Button",
+									"label": "Hello",
+									"command": "sampleExtension.HelloCommand"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+
+
+	}
+
+}
