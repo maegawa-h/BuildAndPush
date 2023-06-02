@@ -1,0 +1,37 @@
+name: build
+on: 
+  workflow_dispatch
+#  push:
+#    paths:
+#      - 'src/Sample/**'
+#    tags:
+#      - '*'
+#    branches: [ publish ]
+#  pull_request:
+#    branches: [ publish ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:    
+      # リポジトリのチェックアウト
+      - uses: actions/checkout@v2
+    
+      # dotnetのインストール (3.1)
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+
+      # ビルドとパッケージング
+      # Nugetサーバへのnupkgの登録
+      - name: Publish Extension to Nuget Server
+        uses: maegawa-h/act-PublishingExtentionToNugetServer@main
+        with:
+            nugetServerUrl: ${{secrets.NU_SERVER}}
+            nugetServerKey: ${{secrets.NU_SERVER_KEY}}
+            srcDir: \src
+            tmpDir: \packages
+
+      # Slack への通知（SlackのGithubアプリで代替）
