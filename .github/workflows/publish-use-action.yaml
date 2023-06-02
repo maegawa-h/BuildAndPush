@@ -31,7 +31,7 @@ jobs:
         with:
             nugetServerUrl: ${{secrets.NU_SERVER}}
             nugetServerKey: ${{secrets.NU_SERVER_KEY}}
-            srcDir: \src
-            tmpDir: \packages
+            srcDir: "\src"
+            tmpDir: "\packages"
 
       # Slack への通知（SlackのGithubアプリで代替）
